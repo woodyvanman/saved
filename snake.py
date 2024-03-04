@@ -24,3 +24,10 @@
         title.a.text: float(rating.strong.text)
         for title, rating in zip(titles, ratings)
     }
+def write_movies(filename: str = "IMDb_Top_250_Movies.csv") -> None:
+    movies = get_imdb_top_250_movies()
+    with open(filename, "w", newline="") as out_file:
+        writer = csv.writer(out_file)
+        writer.writerow(["Movie title", "IMDb rating"])
+        for title, rating in movies.items():
+            writer.writerow([title, rating])
